@@ -8,22 +8,30 @@ public class Weapon : MonoBehaviour
     [SerializeField] Camera FPCamera = default;
     [SerializeField] ParticleSystem muzzleFlash = default;
     [SerializeField] GameObject hitEffect = default;
+    [SerializeField] Ammo ammoSlot = default;
+
 
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 30f;
+
+    bool canShoot = true;
 
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+                StartCoroutine(Shoot());
         }
     }
 
-    private void Shoot()
+    IEnumerator Shoot()
     {
-        PlayMuzzleFlash();
-        ProcessRaycast();
+        if (ammoSlot.GetCurrentAmmo() > 0)
+        {
+            PlayMuzzleFlash();
+            ProcessRaycast();
+            ammoSlot.ReduceCurrentAmmo();
+        }
     }
 
     private void PlayMuzzleFlash()
