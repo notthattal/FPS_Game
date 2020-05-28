@@ -29,14 +29,17 @@ public class EnemyAI : MonoBehaviour
             enabled = false;
             navMeshAgent.enabled = false;
         }
-        distanceToTarget = Vector3.Distance(target.position, transform.position);
-        if (isProvoked)
+        else
         {
-            EngageTarget();
-        }
-        else if (distanceToTarget  <= chaseRange)
-        {
-            isProvoked = true;
+            distanceToTarget = Vector3.Distance(target.position, transform.position);
+            if (isProvoked)
+            {
+                EngageTarget();
+            }
+            else if (distanceToTarget <= chaseRange)
+            {
+                isProvoked = true;
+            }
         }
     }
 
