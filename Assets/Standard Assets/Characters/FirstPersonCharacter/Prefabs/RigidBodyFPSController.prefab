@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 1136819797}
   - component: {fileID: 9055581544216720066}
   - component: {fileID: 5512257373788286055}
+  - component: {fileID: 1222629106377769460}
   m_Layer: 0
   m_Name: RigidBodyFPSController
   m_TagString: Untagged
@@ -365,6 +366,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoSlots: []
+--- !u!114 &1222629106377769460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672e8234bc2764eb0a35669401412611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactCanvas: {fileID: 0}
+  impactTime: 0.3
 --- !u!1 &1225588870362522521
 GameObject:
   m_ObjectHideFlags: 0

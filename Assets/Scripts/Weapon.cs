@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -10,10 +11,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitEffect = default;
     [SerializeField] Ammo ammoSlot  = default;
     [SerializeField] AmmoType ammoType = default;
+    [SerializeField] TextMeshProUGUI ammoText = default;
+    [SerializeField] AudioClip gunShotSound = default;
 
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 30f;
     [SerializeField] float timeBetweenShots = 0.5f;
+    
 
     bool canShoot = true;
 
@@ -24,10 +28,17 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        DisplayAmmo();
         if (Input.GetButtonDown("Fire1") && canShoot == true)
         {
                 StartCoroutine(Shoot());
         }
+    }
+
+    private void DisplayAmmo()
+    {
+        int currentAmmo = ammoSlot.GetCurrentAmmo(ammoType);
+        ammoText.text = currentAmmo.ToString();
     }
 
     IEnumerator Shoot()
@@ -36,6 +47,7 @@ public class Weapon : MonoBehaviour
         if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
             PlayMuzzleFlash();
+            GetComponent<AudioSource>().PlayOneShot(gunShotSound);
             ProcessRaycast();
             ammoSlot.ReduceCurrentAmmo(ammoType);
         }

@@ -6,6 +6,7 @@ public class EnemyAttack : MonoBehaviour
 {
     PlayerHealth target = default;
     [SerializeField] float damage = 40f;
+    [SerializeField] AudioClip enemyAttackSound = default;
 
     void Start()
     {
@@ -16,6 +17,8 @@ public class EnemyAttack : MonoBehaviour
     {
         if (target == null) { return; }
         target.TakeDamage(damage);
+        target.GetComponent<DisplayDamage>().ShowDamageImpact();
+        GetComponent<AudioSource>().PlayOneShot(enemyAttackSound);
     }
 
 }
