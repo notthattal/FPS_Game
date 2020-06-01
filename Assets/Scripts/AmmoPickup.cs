@@ -6,13 +6,21 @@ public class AmmoPickup : MonoBehaviour
 {
     [SerializeField] int ammoAmount = 5;
     [SerializeField] AmmoType ammoType = default;
+    [SerializeField] AudioClip pickupSFX = default;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             FindObjectOfType<Ammo>().IncreaseCurrentAmmo(ammoType, ammoAmount);
-            Destroy(gameObject);
+            StartCoroutine(Pickup());
         }
+    }
+
+    IEnumerator Pickup()
+    {
+        GetComponent<AudioSource>().PlayOneShot(pickupSFX);
+        yield return new WaitForSeconds(0.05f);
+        Destroy(gameObject);
     }
 }

@@ -26,4 +26,12 @@ public class SceneLoader : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void PlaySound()
+    {
+        if (GetComponent<AudioSource>().enabled == true)
+            GetComponent<AudioSource>().Play();
+    }
+
+
 }

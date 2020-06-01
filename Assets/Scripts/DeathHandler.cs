@@ -14,6 +14,7 @@ public class DeathHandler : MonoBehaviour
     public void HandleDeath()
     {
         gameOverCanvas.enabled = true;
+        GetComponent<AudioSource>().enabled = false;
         Time.timeScale = 0;
         FindObjectOfType<WeaponSwitcher>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
